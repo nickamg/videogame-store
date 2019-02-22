@@ -66,6 +66,25 @@
       </field>
     </record>
 
+    <!--Vista de formulario para la creación de controles-->
+
+    <record model="ir.ui.view" id="videogame_store_view_controller_form">
+      <field name="name">controller_form</field>
+      <field name="model">videogame_store.controller</field>
+      <field name="arch" type="xml">
+          <form string="Course Form">
+            <sheet>
+              <group>
+                <field name="name"/>
+                <field name="inalambric"/>
+                <field name="color"/>
+                <field name="description"/>
+              </group>
+            </sheet>
+          </form>
+      </field>
+    </record>
+
      <!-- Vista de árbol para la visualización de videojuegos -->
 
     <record model="ir.ui.view" id="videogame_store_view_videogame_list">
@@ -80,6 +99,25 @@
           <field name="sold_units"/>
           <field name="earning"/>
         </tree>
+      </field>
+    </record>
+
+    <record model="ir.ui.view" id="videogame_store_view_videogame_form">
+      <field name="name">videogame_form</field>
+      <field name="model">videogame_store.videogame</field>
+      <field name="arch" type="xml">
+          <form string="Course Form">
+            <sheet>
+              <group>
+                <field name="title"/>
+                <field name="year"/>
+                <field name="category"/>
+                <field name="price"/>
+                <field name="sold_units"/>
+                <field name="earning"/>
+              </group>
+            </sheet>
+          </form>
       </field>
     </record>
 
@@ -114,11 +152,25 @@
       <field name="view_mode">tree</field>
     </record>
 
+    <!-- Llamada a la vista de formulario de consolas para crear nuevos mandos -->
+    <record model="ir.actions.act_window" id="videogame_store_action_controllers_form">
+      <field name="name">Insert controller</field>
+      <field name="res_model">videogame_store.controller</field>
+      <field name="view_mode">form</field>
+    </record>
+
     <!-- Llamada a la vista de árbol de videojuegos para listarlos -->
     <record model="ir.actions.act_window" id="videogame_store_action_videogame_list">
       <field name="name">List of all videogames</field>
       <field name="res_model">videogame_store.videogame</field>
       <field name="view_mode">tree</field>
+    </record>
+
+    <!-- Llamada a la vista de formulario de consolas para crear nuevos juegos -->
+    <record model="ir.actions.act_window" id="videogame_store_action_videogame_form">
+      <field name="name">Insert videogames</field>
+      <field name="res_model">videogame_store.videogame</field>
+      <field name="view_mode">form</field>
     </record>
 
     <!-- Top menu item -->
@@ -143,8 +195,14 @@
     <menuitem name="List All Controller" id="videogame_store_menu_controllers_list" parent="videogame_store_menu_controllers" 
     action="videogame_store_action_controllers_list"/>
 
+    <menuitem name="Create New Controller" id="videogame_store_menu_controllers_form" parent="videogame_store_menu_controllers" 
+    action="videogame_store_action_controllers_form"/>
+
     <menuitem name="List All Videogames" id="videogame_store_menu_videogame_list" parent="videogame_store_menu_videogame" 
     action="videogame_store_action_videogame_list"/>
+
+    <menuitem name="Create New Videogame" id="videogame_store_menu_videogame_form" parent="videogame_store_menu_videogame" 
+    action="videogame_store_action_videogame_form"/>
 
   </data>
 </odoo>
