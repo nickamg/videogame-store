@@ -1,7 +1,7 @@
 <odoo>
   <data>
-    <!-- explicit list view definition -->
 
+    <!-- Vista de árbol para la visualización de consolas -->
     <record model="ir.ui.view" id="videogame_store_view_consoles_list">
       <field name="name">consoles_list</field>
       <field name="model">videogame_store.console</field>
@@ -16,31 +16,110 @@
       </field>
     </record>
 
+    <!-- Vista de formulario para la creación de consolas, aquí funciona el campo calculado a medida que rellenan manufacturer se rellena automáticamente country -->
+    <record model="ir.ui.view" id="videogame_store_view_consoles_form">
+      <field name="name">consoles_form</field>
+      <field name="model">videogame_store.console</field>
+      <field name="arch" type="xml">
+          <form string="Course Form">
+            <sheet>
+              <group>
+                <field name="name"/>
+                <field name="year"/>
+                <field name="manufacturer"/>
+                <field name="console_generation"/>
+                <field name="country"/>
+              </group>
+            </sheet>
+          </form>
+      </field>
+    </record>
+
+    <!-- Vista de Search para la búsqueda de consolas -->
+    <record model="ir.ui.view" id="videogame_store_view_consoles_view">
+      <field name="name">consoles_search</field>
+      <field name="model">videogame_store.console</field>
+      <field name="arch" type="xml">
+        <search>
+          <field name="name"/>
+          <field name="year"/>
+          <field name="manufacturer"/>
+          <field name="console_generation"/>
+          <field name="country"/>
+        </search>
+      </field>
+    </record>
+
+
+    <!-- Vista de árbol para la visualización de controles -->
+
+    <record model="ir.ui.view" id="videogame_store_view_controller_list">
+      <field name="name">videogame_list</field>
+      <field name="model">videogame_store.controller</field>
+      <field name="arch" type="xml">
+        <tree>
+          <field name="name"/>
+          <field name="inalambric"/>
+          <field name="color"/>
+          <field name="description"/>
+        </tree>
+      </field>
+    </record>
+
+     <!-- Vista de árbol para la visualización de videojuegos -->
+
+    <record model="ir.ui.view" id="videogame_store_view_videogame_list">
+      <field name="name">videogame_list</field>
+      <field name="model">videogame_store.videogame</field>
+      <field name="arch" type="xml">
+        <tree>
+          <field name="title"/>
+          <field name="year"/>
+          <field name="category"/>
+          <field name="price"/>
+          <field name="sold_units"/>
+          <field name="earning"/>
+        </tree>
+      </field>
+    </record>
+
 
     <!-- actions opening views on models -->
 
+    <!-- Llamada a la vista de árbol de consolas para listarla -->
     <record model="ir.actions.act_window" id="videogame_store_action_consoles_list">
-      <field name="name">consoles_window</field>
+      <field name="name">List of all consoles</field>
       <field name="res_model">videogame_store.console</field>
       <field name="view_mode">tree</field>
     </record>
 
-
-    <!-- server action to the one above -->
-    <!--
-    <record model="ir.actions.server" id="videogame_store.action_server">
-      <field name="name">videogame_store server</field>
-      <field name="model_id" ref="model_videogame_store_videogame_store"/>
-      <field name="state">code</field>
-      <field name="code">
-        action = {
-          "type": "ir.actions.act_window",
-          "view_mode": "tree,form",
-          "res_model": self._name,
-        }
-      </field>
+    <!-- Llamada a la vista de formulario de consolas para crear nuevas consolas -->
+    <record model="ir.actions.act_window" id="videogame_store_action_consoles_form">
+      <field name="name">Insert consoles</field>
+      <field name="res_model">videogame_store.console</field>
+      <field name="view_mode">form</field>
     </record>
-    -->
+
+    <!-- Llamada a la vista de search de consolas para búsqueda de consolas -->
+    <record model="ir.actions.act_window" id="videogame_store_action_consoles_search">
+      <field name="name">Search consoles</field>
+      <field name="res_model">videogame_store.console</field>
+      <field name="view_mode">search</field>
+    </record>
+    
+    <!-- Llamada a la vista de árbol de controles para listarlos -->
+    <record model="ir.actions.act_window" id="videogame_store_action_controllers_list">
+      <field name="name">List of all controllers</field>
+      <field name="res_model">videogame_store.controller</field>
+      <field name="view_mode">tree</field>
+    </record>
+
+    <!-- Llamada a la vista de árbol de videojuegos para listarlos -->
+    <record model="ir.actions.act_window" id="videogame_store_action_videogame_list">
+      <field name="name">List of all videogames</field>
+      <field name="res_model">videogame_store.videogame</field>
+      <field name="view_mode">tree</field>
+    </record>
 
     <!-- Top menu item -->
 
@@ -50,10 +129,22 @@
 
     <menuitem name="Consoles" id="videogame_store_menu_consoles" parent="videogame_store_menu_root"/>
 
+    <menuitem name="Controllers " id="videogame_store_menu_controllers" parent="videogame_store_menu_root"/>
+
+    <menuitem name="Videogames " id="videogame_store_menu_videogame" parent="videogame_store_menu_root"/>
     <!-- actions -->
 
-    <menuitem name="List" id="videogame_store_menu_consoles_list" parent="videogame_store_menu_consoles"
-              action="videogame_store_action_consoles_list"/>
+    <menuitem name="List All Console" id="videogame_store_menu_consoles_list" parent="videogame_store_menu_consoles" 
+    action="videogame_store_action_consoles_list"/>
+
+    <menuitem name="Create New Console" id="videogame_store_menu_consoles_form" parent="videogame_store_menu_consoles" 
+    action="videogame_store_action_consoles_form"/>
+
+    <menuitem name="List All Controller" id="videogame_store_menu_controllers_list" parent="videogame_store_menu_controllers" 
+    action="videogame_store_action_controllers_list"/>
+
+    <menuitem name="List All Videogames" id="videogame_store_menu_videogame_list" parent="videogame_store_menu_videogame" 
+    action="videogame_store_action_videogame_list"/>
 
   </data>
 </odoo>
