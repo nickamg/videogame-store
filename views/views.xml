@@ -12,6 +12,8 @@
           <field name="manufacturer"/>
           <field name="console_generation"/>
           <field name="country"/>
+          <field name="controller_id"/>
+          <field name="videogame_id"/>
         </tree>
       </field>
     </record>
@@ -62,6 +64,7 @@
           <field name="inalambric"/>
           <field name="color"/>
           <field name="description"/>
+          <field name="console_controller_id"/>
         </tree>
       </field>
     </record>
@@ -85,6 +88,20 @@
       </field>
     </record>
 
+    <!-- Vista para añadir al formulario un desplegable con el nombre de las consolas y a la hora de insertar, haga la relación -->
+    <record model="ir.ui.view" id="videogame_store_view_controller_form_desplegable">
+      <field name="name">controller_form</field>
+      <field name="inherit_id" ref="videogame_store_view_controller_form"/>
+      <field name="model">videogame_store.controller</field>
+      <field name="arch" type="xml">
+          <!-- buscamos el campo description en el formulario y metemos el desplegable después -->
+        <xpath expr="//field[@name='description']" position="after">
+          <field name="console_controller_id" string="Consola a la que pertenece"/>
+        </xpath>
+      </field>
+    </record>
+
+
      <!-- Vista de árbol para la visualización de videojuegos -->
 
     <record model="ir.ui.view" id="videogame_store_view_videogame_list">
@@ -98,10 +115,12 @@
           <field name="price"/>
           <field name="sold_units"/>
           <field name="earning"/>
+          <field name="console_videogame_id"/>
         </tree>
       </field>
     </record>
 
+    <!-- Vista de formulario para la creación de videojuegos -->
     <record model="ir.ui.view" id="videogame_store_view_videogame_form">
       <field name="name">videogame_form</field>
       <field name="model">videogame_store.videogame</field>
@@ -120,6 +139,20 @@
           </form>
       </field>
     </record>
+
+    <!-- Vista para añadir al formulario un desplegable con el nombre de las consolas y a la hora de insertar, haga la relación -->
+    <record model="ir.ui.view" id="videogame_store_view_videogame_form_desplegable">
+      <field name="name">videogame_form</field>
+      <field name="inherit_id" ref="videogame_store_view_videogame_form"/>
+      <field name="model">videogame_store.videogame</field>
+      <field name="arch" type="xml">
+          <!-- buscamos el campo earning en el formulario y metemos el desplegable después -->
+        <xpath expr="//field[@name='earning']" position="after">
+          <field name="console_videogame_id" string="Consola a la que pertenece"/>
+        </xpath>
+      </field>
+    </record>
+
 
 
     <!-- actions opening views on models -->
@@ -166,7 +199,7 @@
       <field name="view_mode">tree</field>
     </record>
 
-    <!-- Llamada a la vista de formulario de consolas para crear nuevos juegos -->
+     <!-- Llamada a la vista de formulario de consolas para crear nuevos videojuegos -->
     <record model="ir.actions.act_window" id="videogame_store_action_videogame_form">
       <field name="name">Insert videogames</field>
       <field name="res_model">videogame_store.videogame</field>
