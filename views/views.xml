@@ -12,9 +12,6 @@
           <field name="manufacturer"/>
           <field name="console_generation"/>
           <field name="country"/>
-          <field name="active" />
-          <field name="barcode" />
-          <field name="weight" />
           <field name="controller_id"/>
           <field name="videogame_id"/>
         </tree>
@@ -33,10 +30,6 @@
                 <field name="year"/>
                 <field name="manufacturer"/>
                 <field name="console_generation"/>
-                <field name="country"/>
-                <field name="active" />
-                <field name="barcode" />
-                <field name="weight" />
               </group>
             </sheet>
           </form>
