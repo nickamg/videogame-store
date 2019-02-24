@@ -12,6 +12,9 @@
           <field name="manufacturer"/>
           <field name="console_generation"/>
           <field name="country"/>
+          <field name="active" />
+          <field name="barcode" />
+          <field name="weight" />
           <field name="controller_id"/>
           <field name="videogame_id"/>
         </tree>
@@ -31,6 +34,9 @@
                 <field name="manufacturer"/>
                 <field name="console_generation"/>
                 <field name="country"/>
+                <field name="active" />
+                <field name="barcode" />
+                <field name="weight" />
               </group>
             </sheet>
           </form>
@@ -54,7 +60,6 @@
 
 
     <!-- Vista de árbol para la visualización de controles -->
-
     <record model="ir.ui.view" id="videogame_store_view_controller_list">
       <field name="name">videogame_list</field>
       <field name="model">videogame_store.controller</field>
@@ -70,7 +75,6 @@
     </record>
 
     <!--Vista de formulario para la creación de controles-->
-
     <record model="ir.ui.view" id="videogame_store_view_controller_form">
       <field name="name">controller_form</field>
       <field name="model">videogame_store.controller</field>
@@ -103,7 +107,6 @@
 
 
      <!-- Vista de árbol para la visualización de videojuegos -->
-
     <record model="ir.ui.view" id="videogame_store_view_videogame_list">
       <field name="name">videogame_list</field>
       <field name="model">videogame_store.videogame</field>

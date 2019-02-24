@@ -7,13 +7,10 @@ class controller(models.Model):
 
     console_controller_id = fields.Many2one(
         'videogame_store.console',
-        #Este es el domain, es el filtro que solo mostrará los mandos que sean inalámbricos
-        domain=[('inalambric', '=', True)]),
+        # Este es el domain, es el filtro que solo mostrara los mandos que sean inalambricos
+        domain = [('inalambric', '=', True)],
         string = 'Console'
     )
-
-    
-
     name = fields.Char(
         string = 'Controller name',
         size = 100,

@@ -4,6 +4,7 @@ from odoo import models, fields, api
 
 class console(models.Model):
     _name = 'videogame_store.console'
+    _inherit = 'product_product'
 
     name = fields.Char(
         string = 'Console name',
